@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html ng-app = "CDV">
+	<head>
+		<title>CDV - Express</title>
+
+		<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.1.1/angular-material.min.css">
+		<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/angular-material-data-table/0.10.9/md-data-table.css">
+		<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto:400,700'>
+		<link rel="stylesheet" type="text/css" href="./assets/css/app.css">
+
+	</head>
+	<body ng-controller = "MainController as main">
+		<md-toolbar layout="row" class="md-toolbar-tools">
+	    	<md-button class="menu md-icon-button" hide-gt-sm ng-click="app.toggleList()" aria-label="Show User List">
+	      	<md-icon md-svg-icon="menu"></md-icon>
+	    	</md-button>
+	    	<h1>Cân Đẩu Vân Express</h1>
+	  	</md-toolbar>
+
+	    <div class="searchBox" layout="row" layout-align="center center">
+
+	    	<md-content layout-padding layout="column">
+
+	    		<div class="createData" layout="row" layout-align="end top">
+			      	<md-button class="md-raised md-warn btnAdd" ng-click="main.showAddTrade($event)">Thêm Mới</md-button>
+			  	</div>
+
+			  	<div class="search" layout="row" layout-align="center center">
+	  				<h1>Danh sách Khách Hàng</h1>
+	  			</div>
+
+	    		<!-- <md-input-container layout="row" width="100%">
+						<label>Tìm Kiếm</label>
+				    <input ng-model="main.searchText">
+					</md-input-container>
+
+	    		<section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+		      	<md-button class="md-raised md-primary" ng-click="main.doSearch()">Search</md-button>
+		      </section>-->
+		      <md-input-container layout="row" layout-align="center center">
+		      	<md-progress-circular ng-show="main.activateSearch" ng-disabled="!main.activateSearch" class="md-warn md-hue-3" md-diameter="70"></md-progress-circular>
+		      </md-input-container>
+
+		      	<md-input-container>
+		      		<table class="listResulttable">
+					    <thead>
+				      		<tr>
+				      			<th>Tên Khách Hàng </th>
+				      			<th>Địa Chỉ </th>
+				      			<th>Số Điện Thoại </th>
+				      			<th>Loại hình Kinh Doanh </th>
+				      			<th>Facebook </th>
+				      		</tr>
+				    	</thead>
+				     	<tbody>
+
+				     		<tr ng-repeat="data in main.listResult | orderBy:'timeStamp':true">
+				       			<td class="displayTopic">{{data.name}}</td>
+				       			<td class="displayTopic">{{data.address}}</td>
+				       			<td class="displayTopic">{{data.phone}}</td>
+				       			<td class="displayTopic">{{data.type}}</td>
+				       			<td class="displayTopic">{{data.facebook}}</td>
+				     		</tr>
+				   		</tbody>
+				   	</table>
+		      	</md-input-container>
+	    	</md-content>
+		</div>
+
+
+	  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular-route.min.js"></script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular-aria.js"></script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular-animate.min.js"></script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-filter/0.5.11/angular-filter.min.js"></script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.1.1/angular-material.min.js"></script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/md-data-table/1.8.0/md-data-table-templates.min.js"></script>
+		<script type="text/javascript" src="https://www.gstatic.com/firebasejs/4.1.1/firebase.js"></script>
+
+		<script src="https://www.gstatic.com/firebasejs/4.1.1/firebase-app.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/4.1.1/firebase-database.js"></script>
+
+		<script>
+		  // Initialize Firebase
+		  var config = {
+		    apiKey: "AIzaSyDAUqEevQjvOAsclSaFR5VW9eNsiWCFnT0",
+		    authDomain: "candauvan-79ebe.firebaseapp.com",
+		    databaseURL: "https://candauvan-79ebe.firebaseio.com",
+		    projectId: "candauvan-79ebe",
+		    storageBucket: "candauvan-79ebe.appspot.com",
+		    messagingSenderId: "887651427960"
+		  };
+		  firebase.initializeApp(config);
+		</script>
+		<script type="text/javascript" src="./services/searchService.js"></script>
+		<script type="text/javascript" src="./controllers/mainCtrl.js"></script>
+		<script type="text/javascript" src="./app.js"></script>
+	</body>
+</html>
